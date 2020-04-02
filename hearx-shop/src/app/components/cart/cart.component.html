@@ -52,7 +52,7 @@
         <span class="noselect">{{product.name}}</span>
       </div>
       <div class="card-title-box">
-        <img class="card-image" src="/assets/img_avatar.png" />
+        <img class="card-image" [src]="product.image" />
         <p style="font-size: small;">R{{GetPrice(product)}}</p>
       </div>
       <div style="width: 100%;">
