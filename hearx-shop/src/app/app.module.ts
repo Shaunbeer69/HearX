@@ -8,7 +8,7 @@ import { CartComponent } from './components/cart/cart.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 
 const appRoutes: Routes = [
-  { path: 'home', component: LandingPageComponent },
+  { path: 'home', component: CartComponent },
   { path: 'shop', component:  CartComponent },
   { path: '',
     redirectTo: '/home',

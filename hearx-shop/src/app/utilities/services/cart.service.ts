@@ -10,29 +10,35 @@ export class CartService {
 
   constructor(private cartStore: CartStore) {
     let cart: any[] = JSON.parse(localStorage.getItem('activeCart'));
-    if(cart.length > 0)
-    {
-      cart.forEach(x=>{
-        let product: Product = 
-        {
-          id:x.productId,
-          image:'',
-          name:x.name
-        };
-        if(x.quantity > 0)
-        {
-          this.add(product,x.quantity);
-        }
-        
-      });
-      
+    if (cart) {
+      if (cart.length > 0) {
+        cart.forEach(x => {
+          let product: Product =
+          {
+            id: x.productId,
+            image: '',
+            name: x.name,
+            additionalData:{
+              price:x.price
+            }
+          };
+          if (x.quantity > 0) {
+            this.add(product, x.quantity);
+          }
+
+        });
+
+      }
     }
   }
 
   add(product: Product, quan: number) {
+    let _total = (product.additionalData.price * quan).toFixed(2);
     this.cartStore.upsert(product.id, {
       name: product.name,
-      quantity:quan
+      price: product.additionalData.price ? product.additionalData.price : null,
+      total: _total,
+      quantity: quan
     });
     let cart = this.GetCart();
     localStorage.setItem('activeCart', JSON.stringify(cart));
@@ -41,7 +47,7 @@ export class CartService {
 
   GetCart() {
     let ProductArray: any[] = [];
-    this.cartStore.getValue().ids.forEach(x=>{
+    this.cartStore.getValue().ids.forEach(x => {
       ProductArray.push(this.cartStore.getValue().entities[x]);
     });
     return ProductArray;
@@ -49,26 +55,23 @@ export class CartService {
 
   GetCartProduct(id) {
     let ProductArray: any[] = [];
-    this.cartStore.getValue().ids.forEach(x=>{
+    this.cartStore.getValue().ids.forEach(x => {
       ProductArray.push(this.cartStore.getValue().entities[x]);
     });
-    let obj =  ProductArray.find(x => x.productId === id);
-    if(obj == null)
-    {
+    let obj = ProductArray.find(x => x.productId === id);
+    if (obj == null) {
       return null;
     }
-    else
-    {
+    else {
       return obj;
     }
-    
+
   }
 
-  GetCartTotal()
-  {
+  GetCartTotal() {
     let Count = 0;
     let ProductArray: any[] = [];
-    this.cartStore.getValue().ids.forEach(x=>{
+    this.cartStore.getValue().ids.forEach(x => {
       Count += this.cartStore.getValue().entities[x].quantity;
     });
     return Count;
@@ -80,10 +83,9 @@ export class CartService {
     localStorage.setItem('activeCart', JSON.stringify(cart));
   }
 
-  Clear()
-  {
+  Clear() {
     let ProductArray: any[] = [];
-    this.cartStore.getValue().ids.forEach(x=>{
+    this.cartStore.getValue().ids.forEach(x => {
       this.cartStore.remove(this.cartStore.getValue().entities[x].productId);
     });
     localStorage.removeItem('activeCart');

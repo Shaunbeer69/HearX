@@ -7,5 +7,5 @@ export interface CartItem {
   quantity: number;
   name?: Product['name'];
   price?: Product['additionalData']['price'];
-  total?: number;
+  total?: any;
 }

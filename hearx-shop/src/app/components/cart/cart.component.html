@@ -1,6 +1,5 @@
-<!-- Toolbar -->
 <div class="toolbar sticky-header" role="banner">
-  <img width="40" style="min-width: 60px; margin-right: 5px;" alt="Angular Logo" (click) = "Navigate('/home')"
+  <img width="40" style="min-width: 60px; margin-right: 5px; float: left;" alt="Angular Logo" (click)="Navigate('/home')"
     src="data:image/png;base64,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"
     width="5%" />
   <span style="padding-top: 8px;">Shop</span>
@@ -13,46 +12,61 @@
           d="M10 19.5c0 .829-.672 1.5-1.5 1.5s-1.5-.671-1.5-1.5c0-.828.672-1.5 1.5-1.5s1.5.672 1.5 1.5zm3.5-1.5c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm1.336-5l1.977-7h-16.813l2.938 7h11.898zm4.969-10l-3.432 12h-12.597l.839 2h13.239l3.474-12h1.929l.743-2h-4.195z" />
       </svg>
     </a><span class="noselect" style="font-size: xx-small;margin-right: 10px; ">{{GetCartTotal()}}</span>
-    <div [ngStyle]="{'display': DisplayCart == true ? 'block' : 'none' }" class="dropdown-content"
-      style="margin:5px auto;">
-      <h3 class="noselect">Cart</h3>
-      <hr />
-      <div *ngFor="let product of cart;index as i;" class="border-bottom" style=" width:260px;margin:0 auto;">
-        <span class="close noselect" (click)="RemoveItem(product)" style="float: right; font-weight: bold; padding-top:20px">x</span>
-        <div style="display: flex;">
-          <p style="width: 40px;height: 40px; padding-top:20px">{{product.quantity}} x</p>
-          <p style="width: 200px;height: 40px; padding-top:20px">{{product.name}} - </p>
-        </div>
-        <hr />
+    <div [ngStyle]="{'display': DisplayCart == true ? 'block' : 'none' }" class="dropdown-content ">
+      <div style="display: flex;justify-content: space-between;width: 100%; margin: auto;">
+        <h3 class="noselect">Cart</h3>
+        <h3 (click)="TriggerCart()" class="noselect">x</h3>
       </div>
-      <button class="btn-primary second" style="width: 100%;">
+           
+      <hr />
+      <div class="drop-down-inner" style="margin:5px auto;">
+        <div *ngFor="let product of cart;index as i;" class="border-bottom noselect"
+          style=" width:280px;margin:0 auto;">
+          <!-- <span  (click)="RemoveItem(product)" style="float: right; font-weight: bold; padding-top:20px">x</span> -->
+          <div style="display: flex;justify-content: space-around;">
+            <p style="height: 60px; padding-top:20px; font-size: small;">{{product.quantity}} x</p>
+            <p style="width:160px;height: 60px; padding-top:20px; font-size: small;">{{product.name}}</p>
+            <p style="height: 60px; padding-top:20px; font-size: small;">R{{product.total}}</p>
+            <p class="close noselect" (click)="RemoveItem(product)" style="height: 60px; padding-top:20px">x</p>
+          </div>
+          <hr />
+        </div>
+        <div style="display: flex;justify-content: space-between;width: 80%; margin: auto;">
+          <h3 class="noselect">Total:</h3>
+          <h3 class="noselect">R{{GetCartCashTotal()}}</h3>
+        </div>
+      </div>
+      <hr />
+      <button (click)="Checkout()" class="btn-primary second" style="width: 100%;">
         <p class="text-center">Checkout</p>
       </button>
-
     </div>
   </div>
-
 </div>
 
-<div (click)="DisplayCart ? DisplayCart = false : DisplayCart = false;" style="height: 100%;margin-top:55px" role="main">  
-  <div  class="flexi">
-    <div *ngFor="let product of Products;index as i;" class="card setup flex-item" style="margin: 10px;">
+<div (click)="DisplayCart ? DisplayCart = false : DisplayCart = false;" style="height: 100%;margin-top:55px"
+  role="main">
+  <div class="flexi">
+    <div *ngFor="let product of Products;index as i;" class="card setup flex-item noselect" style="margin: 10px;">
       <div class="text-container">
         <span class="noselect">{{product.name}}</span>
       </div>
-      <hr />
-      <div class="mt-5">
+      <div class="card-title-box">
         <img class="card-image" src="/assets/img_avatar.png" />
+        <p style="font-size: small;">R{{GetPrice(product)}}</p>
       </div>
       <div style="width: 100%;">
         <button *ngIf="!HasQuantity(product)" (click)="AddToCart(product)" [attr.id]="product.id + 'btn'"
           class="btn first">Add to cart</button>
-        <div class="" style="display: flex;align-items: center;justify-content: center" [attr.id]="product.id + 'btn'">
-          <button class="btn-adjust first" style="font-size: xx-large;" *ngIf="HasQuantity(product)" (click)="DecreaseQuantity(product)">-</button>
+        <div style="display: flex;align-items: center;justify-content: center; margin-top: 5px;"
+          [attr.id]="product.id + 'btn'">
+          <button class="btn-adjust first" style="font-size: xx-large;" *ngIf="HasQuantity(product)"
+            (click)="DecreaseQuantity(product)">-</button>
           <p class="btn-adjust-text" *ngIf="HasQuantity(product)" style="font-size: large;">{{GetQuantity(product)}}</p>
-          <button class="btn-adjust first" style="font-size: xx-large;" *ngIf="HasQuantity(product)" (click)="AddQuantity(product)">+</button>
+          <button class="btn-adjust first" style="font-size: xx-large;" *ngIf="HasQuantity(product)"
+            (click)="AddQuantity(product)">+</button>
         </div>
-        <div style="margin: 2px;" [attr.id]="product.id+'loader'" class="d-none">
+        <div [attr.id]="product.id+'loader'" class="d-none">
           <div class="box ">
             <div [attr.id]="product.id"></div>
           </div>
@@ -60,3 +74,6 @@
       </div>
     </div>
   </div>
+
+ 
+  
