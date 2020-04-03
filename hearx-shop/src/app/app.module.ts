@@ -9,7 +9,6 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
 
 const appRoutes: Routes = [
   { path: 'home', component: CartComponent },
-  { path: 'shop', component:  CartComponent },
   { path: '',
     redirectTo: '/home',
     pathMatch: 'full'
