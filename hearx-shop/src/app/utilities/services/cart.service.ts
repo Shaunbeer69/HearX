@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 
 import { ID } from '@datorama/akita';
-import { Product } from '../product/product.model';
+
 import { CartStore } from '../store/cart.store';
+import { Product } from '../interfaces/product/product.model';
 
 
 @Injectable({ providedIn: 'root' })
@@ -15,7 +16,7 @@ export class CartService {
         cart.forEach(x => {
           let product: Product =
           {
-            id: x.productId,
+            id: x.product_id,
             image: '',
             name: x.name,
             additionalData:{
@@ -58,7 +59,7 @@ export class CartService {
     this.cartStore.getValue().ids.forEach(x => {
       ProductArray.push(this.cartStore.getValue().entities[x]);
     });
-    let obj = ProductArray.find(x => x.productId === id);
+    let obj = ProductArray.find(x => x.product_id === id);
     if (obj == null) {
       return null;
     }
@@ -77,8 +78,8 @@ export class CartService {
     return Count;
   }
 
-  Remove(productId: ID) {
-    this.cartStore.remove(productId);
+  Remove(product_id: ID) {
+    this.cartStore.remove(product_id);
     let cart = this.GetCart();
     localStorage.setItem('activeCart', JSON.stringify(cart));
   }
@@ -86,7 +87,7 @@ export class CartService {
   Clear() {
     let ProductArray: any[] = [];
     this.cartStore.getValue().ids.forEach(x => {
-      this.cartStore.remove(this.cartStore.getValue().entities[x].productId);
+      this.cartStore.remove(this.cartStore.getValue().entities[x].product_id);
     });
     localStorage.removeItem('activeCart');
   }

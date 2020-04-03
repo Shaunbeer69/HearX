@@ -1,7 +1,7 @@
 import { Component, HostListener, ElementRef, OnDestroy, AfterViewInit, ViewChild } from '@angular/core';
-import { Product } from 'src/app/Utilities/product/product.model';
+import { Product } from 'src/app/utilities/interfaces/product/product.model';
 import { CartService } from 'src/app/Utilities/services/cart.service';
-import { CartItem } from 'src/app/Utilities/cart/cart.model';
+import { CartItem } from 'src/app/utilities/interfaces/cart/cart.model';
 import { Router } from '@angular/router';
 import { Subscription, interval } from 'rxjs';
 
@@ -184,7 +184,7 @@ export class CartComponent implements OnDestroy, AfterViewInit {
       quantity -= 1;
       this.cartService.add(product, quantity);
       if (quantity == 0) {
-        this.cartService.Remove(tmpCartItem.productId);
+        this.cartService.Remove(tmpCartItem.product_id);
       }
       this.cart = this.cartService.GetCart();
     }
@@ -228,15 +228,15 @@ export class CartComponent implements OnDestroy, AfterViewInit {
 
   //Remove From Cart
   RemoveItem(product: any) {
-    let tmpCartItem: CartItem = this.cartService.GetCartProduct(product.productId);
-    let tmpProduct: Product = this.Products.find(x => x.id === product.productId);
+    let tmpCartItem: CartItem = this.cartService.GetCartProduct(product.product_id);
+    let tmpProduct: Product = this.Products.find(x => x.id === product.product_id);
     if (tmpCartItem != null) {
       let quantity = Number(tmpCartItem.quantity);
       quantity -= 1;
       this.cartService.add(tmpProduct, quantity);
       this.cart = this.cartService.GetCart();
       if (quantity == 0) {
-        this.cartService.Remove(product.productId);
+        this.cartService.Remove(product.product_id);
         this.cart = this.cartService.GetCart();
         if (this.GetCartTotal() == 0) {
           this.DisplayCart = false;

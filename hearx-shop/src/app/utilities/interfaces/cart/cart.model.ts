@@ -3,7 +3,7 @@ import { Product } from '../product/product.model';
 
 
 export interface CartItem {
-  productId?: ID;
+  product_id?: ID;
   quantity: number;
   name?: Product['name'];
   price?: Product['additionalData']['price'];
