@@ -1,4 +1,4 @@
-import { Component, HostListener, ElementRef, OnDestroy, AfterViewInit } from '@angular/core';
+import { Component, HostListener, ElementRef, OnDestroy, AfterViewInit, ViewChild } from '@angular/core';
 import { Product } from 'src/app/Utilities/product/product.model';
 import { CartService } from 'src/app/Utilities/services/cart.service';
 import { CartItem } from 'src/app/Utilities/cart/cart.model';
@@ -12,6 +12,8 @@ import { Subscription, interval } from 'rxjs';
 })
 export class CartComponent implements OnDestroy, AfterViewInit {
   subscription: Subscription;
+  @ViewChild('PriceSort',{static:true}) PriceSort: ElementRef  ;
+  @ViewChild('NameSort',{static:true}) NameSort: ElementRef  ;
   title = 'hearx-shop';
   public DisplayCart: boolean = false;
   cart: any[];
@@ -68,13 +70,63 @@ export class CartComponent implements OnDestroy, AfterViewInit {
   myTimer: any;
 
 
-  constructor(private eRef: ElementRef, private cartService: CartService, private route: Router) { }
+  constructor(private eRef: ElementRef, private cartService: CartService, private route: Router) {
+  
+   
+   }
 
   //Setting Timer for Cart local storage clear
   ngAfterViewInit(): void {
     const source = interval(1000 * 60 * 60);
     this.subscription = source.subscribe(val => this.clearStorage());
+   
+  
   }
+
+  SortName()
+  {
+    let currentSelection:string = this.NameSort.nativeElement.innerHTML;
+ 
+    if(currentSelection == 'Name ASC')
+    {
+      this.NameSort.nativeElement.innerHTML = "Name DEC";
+      this.Products.sort((a, b) => 
+      {
+        return (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)
+      });
+    }
+    else
+    {
+      this.NameSort.nativeElement.innerHTML = "Name ASC";
+      this.Products.sort((a, b) => 
+      {
+        return (a.name > b.name) ? -1 : ((b.name > a.name) ? 1 : 0)
+      });
+    }
+   
+  }
+
+  SortPrice()
+  {
+    let currentSelection:string = this.PriceSort.nativeElement.innerHTML;
+ 
+      if(currentSelection == 'Price ASC')
+      {
+        this.PriceSort.nativeElement.innerHTML = "Price DEC";
+        this.Products.sort((a, b) => {
+          return a.additionalData.price - b.additionalData.price;
+        });
+    
+      }
+      else
+      {
+        this.PriceSort.nativeElement.innerHTML = "Price ASC"
+        this.Products.sort((a, b) => {
+          return b.additionalData.price - a.additionalData.price ;
+        });
+      }
+    }
+ 
 
   //Navigation
   public Navigate(route: string) {
